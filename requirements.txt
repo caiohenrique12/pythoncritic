@@ -1,0 +1,4 @@
+flake8==5.0.4
+black==22.6.0
+pytest-cov==3.0.0
+pylint==2.14.5
