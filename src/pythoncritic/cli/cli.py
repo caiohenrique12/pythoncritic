@@ -4,14 +4,13 @@ import datetime
 
 from pathlib import Path
 
-
 def run_flake8(args):
     print('run flake8..')
 
     if args is not None:
-        output_file_name = Path(args).stem + '_flake8_output.txt'
+        output_file_name = Path(args).stem + '_flake8_output.log'
         os.system(
-            f"flake8 {args} -vv --output-file=tmp/{output_file_name}"
+            f"flake8 {args} --output-file=tmp/{output_file_name}"
         )
 
 
