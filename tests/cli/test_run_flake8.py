@@ -4,6 +4,6 @@ import pytest
 
 
 def test_run_flake8():
-    os.system("python src/pythoncritic/cli/cli.py flake8 tests/sample/flake8_code_sample.py")
+    os.system("python src/pythoncritic/cli/cli.py flake8 test/sample/duplicate_code_sample.py")
 
-    assert os.path.exists("tmp/flake8_code_sample_flake8_output.log") == True
+    assert os.path.exists("tmp/flake8_output.txt") == True
