@@ -4,4 +4,5 @@ import pytest
 
 
 def test_run_black():
-    os.system("python src/pythoncritic/cli/cli.py black tests/sample/duplicate_code_sample.py")
+    file_path = "tests/sample/black_code_impossible_to_reformat_sample.py"
+    os.system(f"python src/pythoncritic/cli/cli.py black {file_path}")
