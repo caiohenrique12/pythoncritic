@@ -4,6 +4,7 @@ import datetime
 
 from pathlib import Path
 
+
 def run_flake8(args):
     print('run flake8..')
 
@@ -17,15 +18,16 @@ def run_flake8(args):
 def run_black(args):
     print('run black..')
     cmd = None
+    output_file_name = Path(args).stem + '_black_output.log'
 
     if args is not None:
-        cmd = f"black {args}"
+        cmd = f"black --check {args} 2> >(tee -a tmp/{output_file_name} >&2)"
     else:
         cmd = "black"
 
     os.system(cmd)
 
-def run_coverege():
+def run_coverage():
     print('initializing coverage..')
 
 
@@ -57,7 +59,7 @@ add_parser.set_defaults(func=run_black)
 
 add_parser = subparsers.add_parser('coverage', help='run coverage in your project')
 add_parser.add_argument(**arg_template)
-add_parser.set_defaults(func=run_coverege)
+add_parser.set_defaults(func=run_coverage)
 
 
 add_parser = subparsers.add_parser('pythoncritic', help='run flake8, black, and coverage')
