@@ -1,18 +1,29 @@
 import os
 import argparse
-import datetime
 
 from pathlib import Path
+
+from jinja2 import Environment, FileSystemLoader
+
+
+env = Environment(loader=FileSystemLoader('src/pythoncritic/templates'))
 
 
 def run_flake8(args):
     print('run flake8..')
+    output_file_name = None
 
     if args is not None:
-        output_file_name = Path(args).stem + '_flake8_output.log'
+        output_file_name = Path(args).stem + '_flake8_output.json'
         os.system(
-            f"flake8 {args} --output-file=tmp/{output_file_name}"
+            f"flake8 --format=json {args} > tmp/{output_file_name}"
         )
+
+    template = env.get_template('flake8.html')
+
+    with open('tmp/flake8_output.html', 'w') as f:
+        breakpoint()
+        f.write(template.render(data=output_file_name))
 
 
 def run_black(args):
